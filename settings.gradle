@@ -1,4 +1,5 @@
 rootProject.name = 'SpringBootGradleMultiProject'
 include 'spring-boot-customer'
 include 'spring-boot-order'
+include 'spring-boot-gateway'
 

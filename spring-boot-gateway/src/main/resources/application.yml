@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+management:
+  info:
+    git:
+      mode: full
+  endpoints:
+    web:
+      exposure:
+        include: beans, health, loggers, gateway,metrics
+    health:
+      enabled: true
+    loggers:
+      enabled: true
+    beans:
+      enabled: true
+    liquibase:
+      enabled: true
+    git:
+      enbled: true
+
+logging:
+  level.root: INFO
+  level.io.fdlessard.codebites.gateway: DEBUG
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  jackson:
+    default-property-inclusion: non_null
+    time-zone: UTC
+    serialization:
+      write_dates_as_timestamps: false
+  cloud:
+    gateway:
+      routes:
+        - id: customer-sevice
+          uri: http://localhost:8081/customers
+          predicates:
+            - Path=/customers/**
+        - id: order-service
+          uri: http://localhost:8082/orders
+          predicates:
+            - Path=/orders/**
+
+

@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: francois-david.lessard@nbc.ca
+      changes:
+        - loadData:
+            tableName: order
+            schemaName: order
+            file: "db/data/order.csv"
+            encoding: UTF-8
+            separator: ','
+            quotchar: "'"
+            columns:
+              - column:
+                  name: date
+                  type: string
+
+        - loadData:
+            tableName: order_item
+            schemaName: order
+            file: "db/data/order_item.csv"
+            encoding: UTF-8
+            separator: ','
+            quotchar: "'"
+            columns:
+              - column:
+                  name: order_id
+                  type: numeric
+              - column:
+                  name: product_name
+                  type: string
+              - column:
+                  name: quantity
+                  type: string
+
+
